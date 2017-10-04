@@ -11,9 +11,10 @@ import { DeviceFormComponent } from './device/device-form.component';
     DeviceFormComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
-  bootstrap: [DeviceFormComponent]
+  bootstrap: [DeviceFormComponent, AppComponent]
 })
 export class AppModule { }

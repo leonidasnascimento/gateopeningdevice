@@ -7,12 +7,13 @@ import { DeviceModel } from './device-model';
 })
 
 export class DeviceFormComponent {
-  model = new DeviceModel(1, 'iPhone do Leônidas', 'a162bff1e2424423b433a3992221e353', new Date());
+  model = new DeviceModel();
 
   submitted = false;
 
   onSubmit() {
     this.submitted = true;
+    alert(this.diagnostic);
   }
 
   // TODO: Remove this when we're done
