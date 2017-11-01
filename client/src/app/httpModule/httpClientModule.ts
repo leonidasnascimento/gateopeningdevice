@@ -5,24 +5,21 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
 export class HttpClient {
-  private http: Http;
+  public Post(url: string, obj: any, http: Http) {
 
-  public Post(url: string, obj: any) {
-    alert(url);
-    alert(JSON.stringify(obj));
+    const headers = new Headers({ 'Content-Type': 'application/json' });
+    const options = new RequestOptions({ headers: headers });
 
-    return this.http.post(url, JSON.stringify(obj))
+    console.log(JSON.stringify(obj));
+
+    return http.post(url, obj)
     .toPromise()
     .then(this.GetResponse);
   }
 
   private GetResponse(response: Response): String {
-
-    if (!response.ok) {
-      return JSON.stringify(response.text) || '';
-    } else {
-      const res = response.json();
-      return res.data || '';
+    if (response.ok) {
+      return response.text();
     }
   }
 }

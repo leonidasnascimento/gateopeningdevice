@@ -1,25 +1,26 @@
-import { Component } from '@angular/core';
 import { DeviceModel } from './device-model';
 import { HttpClient } from './../httpModule/httpClientModule';
+import { Component, Injectable, Inject } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 @Component({
   selector: 'app-device-form',
   templateUrl: './device-form-component.html'
 })
 
+@Injectable()
 export class DeviceFormComponent {
   model = new DeviceModel();
 
-  submitted = false;
-
-  onSubmit() {
-    this.submitted = true;
-
-    alert(new HttpClient()
-      .Post('https://gateopeningdevice.azurewebsites.net/device', this.model));
+  onSubmit(): void {
+    new HttpClient()
+    .Post('https://gateopeningdevice.azurewebsites.net/device', this.model, this.http)
+    .then(function (texto) {
+      alert(texto);
+    });
   }
 
-  constructor() {
+  constructor (@Inject(Http) private http: Http) {
     this.model.createdDate = new Date().toLocaleDateString();
   }
 
