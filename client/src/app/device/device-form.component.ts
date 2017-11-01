@@ -15,8 +15,8 @@ export class DeviceFormComponent {
   onSubmit(): void {
     new HttpClient()
     .Post('https://gateopeningdevice.azurewebsites.net/device', this.model, this.http)
-    .then(function (texto) {
-      alert(texto);
+    .then(function (msg) {
+      alert(msg);
     });
   }
 
